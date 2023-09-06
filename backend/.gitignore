@@ -1,0 +1,5 @@
+# Python local venv
+/djangovenv
+/venv
+
+.DS_store
