@@ -1,11 +1,7 @@
-FROM node:14-slim
-
-RUN ["mkdir", "/install"]
-
-ADD ["./package.json", "/install"]
-WORKDIR /install
-RUN npm install --verbose
-ENV NODE_PATH=/install/node_modules
+FROM node:14-buster-slim
 
 WORKDIR /app/frontend
+COPY package.json .
+RUN npm install
 EXPOSE 3000
+CMD ["npm", "start"]
