@@ -23,7 +23,8 @@ def company_detail(request):
     """
     if request.method == 'POST':
         sandbox_access = SandboxAccessToken(
-            request.data.get('provider_id', ''))
+            request.data.get('provider_id', ''),
+            request.data.get('employee_size', 10))
         access_data = sandbox_access.get_access_token()
         access_token = access_data['access_token']
 
@@ -46,7 +47,8 @@ def company_directory_list(request):
     """
     if request.method == 'POST':
         sandbox_access = SandboxAccessToken(
-            request.data.get('provider_id', ''))
+            request.data.get('provider_id', ''),
+            request.data.get('employee_size', 10))
         access_data = sandbox_access.get_access_token()
         access_token = access_data['access_token']
 
@@ -70,7 +72,8 @@ def individual_detail(request):
     """
     if request.method == 'POST':
         sandbox_access = SandboxAccessToken(
-            request.data.get('provider_id', ''))
+            request.data.get('provider_id', ''),
+            request.data.get('employee_size', 10))
         access_data = sandbox_access.get_access_token()
         access_token = access_data['access_token']
 
@@ -102,7 +105,8 @@ def individual_employment_detail(request):
     """
     if request.method == 'POST':
         sandbox_access = SandboxAccessToken(
-            request.data.get('provider_id', ''))
+            request.data.get('provider_id', ''),
+            request.data.get('employee_size', 10))
         access_data = sandbox_access.get_access_token()
         print('access data', access_data)
         access_token = access_data['access_token']

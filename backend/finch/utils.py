@@ -14,11 +14,12 @@ class SandboxAccessToken:
     """ Helper class to get/create an access token for Finch's Sandbox API
     """
 
-    def __init__(self, provider_id) -> None:
+    def __init__(self, provider_id, employee_size) -> None:
         self.url = 'https://sandbox.tryfinch.com/api/sandbox/create'
         self.provider_id = provider_id
         self.product_scopes = ['company', 'directory',
                                'individual', 'employment']
+        self.employee_size = employee_size
 
     def get_unix_timestamp(self, date):
         """ Turns a datetime date into a millisecond timestamp.
@@ -104,7 +105,8 @@ class SandboxAccessToken:
                 # Call API
                 access_payload = {
                     'provider_id': self.provider_id,
-                    'products': self.product_scopes
+                    'products': self.product_scopes,
+                    'employee_size': self.employee_size
                 }
                 access_response = requests.post(
                     self.url, json=access_payload, timeout=5)

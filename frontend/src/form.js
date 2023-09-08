@@ -8,6 +8,11 @@ import {
     Flex,
     Select,
     VStack,
+    NumberInput,
+    NumberInputField,
+    NumberInputStepper,
+    NumberIncrementStepper,
+    NumberDecrementStepper,
 } from '@chakra-ui/react';
 import Axios from 'axios'
 import DataDisplay from './display';
@@ -23,6 +28,7 @@ function CallAPIForm(props) {
 
         let payload = {
             provider_id: formData.provider_id,
+            employee_size: parseInt(formData.employee_size),
             individual_id: formData.individual_id
         };
         console.log('DEBUG (payload): ', JSON.stringify(payload));
@@ -46,7 +52,7 @@ function CallAPIForm(props) {
         >
             <VStack>
                 <Formik
-                    initialValues={{ individual_id: '', provider_id: ''}}
+                    initialValues={{ individual_id: '', provider_id: '', employee_size: 10}}
                     onSubmit={(values, { setSubmitting }) => {
                         fetchData(values, props.url);
                         setSubmitting(false);
@@ -86,7 +92,15 @@ function CallAPIForm(props) {
                                     <option value='zenefits'>Zenefits</option>
                                     <option value='zenefits_api'>Zenefits (API)</option>
                                 </Select>
-                                {showInputField && <FormLabel mt={5}>Individual Id:</FormLabel>}
+                                <FormLabel mt={5}>Employee Size</FormLabel>
+                                <NumberInput defaultValue={10} min={1} max={200} clampValueOnBlur={true} name='employee_size' onChange={handleChange}>
+                                    <NumberInputField />
+                                    <NumberInputStepper>
+                                        <NumberIncrementStepper />
+                                        <NumberDecrementStepper />
+                                    </NumberInputStepper>
+                                </NumberInput>
+                                {showInputField && <FormLabel mt={5}>Individual Id</FormLabel>}
                                 {showInputField && <Input name='individual_id' onChange={handleChange} onBlur={handleBlur} value={values.individual_id}></Input>}
                             </FormControl>
                             <Button
