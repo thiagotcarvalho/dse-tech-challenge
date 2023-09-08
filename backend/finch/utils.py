@@ -1,7 +1,7 @@
 """Django utility functions.
 """
 from datetime import datetime, timedelta
-
+import uuid
 import requests
 from django.core.cache import cache
 from finch.models import SandboxAccess
@@ -29,10 +29,12 @@ class SandboxAccessToken:
         """ Adds a new access token record to the database.
         """
         db_data = {
+            'record_id': uuid.uuid4,
             'provider_id': api_data.get('payroll_provider_id', ''),
             'company_id': api_data.get('company_id', ''),
             'access_token': api_data.get('access_token', ''),
-            'created_time': api_data['sandbox_time'].get('unix', 0)
+            'created_time': api_data['sandbox_time'].get('unix', 0),
+            'latest_bool': False
         }
         serializer = SandboxAccessSerializer(data=db_data)
         print('serializer', serializer)
