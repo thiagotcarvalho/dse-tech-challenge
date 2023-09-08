@@ -35,9 +35,6 @@ def company_detail(request):
 
         if company_detail_response.status_code == 200:
             company_detail_json = company_detail_response.json()
-            # TODO:
-            # 1. Add response to cache
-            #   1a. cache.set('company_detail_data_{provider_id}', company_detail_json)
             return Response(company_detail_json)
         return Response(status=company_detail_response.status_code)
     return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -61,9 +58,6 @@ def company_directory_list(request):
 
         if company_directory_list_response.status_code == 200:
             company_directory_list_json = company_directory_list_response.json()
-            # TODO:
-            # 1. Add response to cache
-            #   1a. cache.set('company_directory_list_data_{provider_id}', company_directory_list_json)
             return Response(company_directory_list_json)
         return Response(status=company_directory_list_response.status_code)
     return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -88,7 +82,7 @@ def individual_detail(request):
             ]
         }
 
-        individual_detail_response = requests.get(
+        individual_detail_response = requests.post(
             INDIVIDUAL_URL,
             headers={'Authorization': f'Bearer {access_token}'},
             json=payload,
@@ -97,9 +91,6 @@ def individual_detail(request):
 
         if individual_detail_response.status_code == 200:
             individual_detail_json = individual_detail_response.json()
-            # TODO:
-            # 1. Add response to cache
-            #   1a. cache.set('individual_detail_data_{provider_id}', individual_detail_json)
             return Response(individual_detail_json)
         return Response(status=individual_detail_response.status_code)
     return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -124,7 +115,7 @@ def individual_employment_detail(request):
             ]
         }
 
-        individual_employment_detail_response = requests.get(
+        individual_employment_detail_response = requests.post(
             EMPLOYMENT_URL,
             headers={'Authorization': f'Bearer {access_token}'},
             json=payload,
@@ -135,9 +126,6 @@ def individual_employment_detail(request):
         if individual_employment_detail_response.status_code == 200:
             individual_employment_detail_json = (
                 individual_employment_detail_response.json())
-            # TODO:
-            # 1. Add response to cache
-            #   1a. cache.set('individual_employment_detail_data_{provider_id}', individual_employment_detail_json)
             return Response(individual_employment_detail_json)
         return Response(
             status=individual_employment_detail_response.status_code)
