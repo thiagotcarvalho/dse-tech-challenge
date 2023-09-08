@@ -7,7 +7,7 @@ First, clone this repository and install [Docker](https://docs.docker.com/engine
 Then, navigate to the directory of the cloned repo and run the following commands in the terminal:
 1. `docker-compose build`
 2. `docker-compose up`
-3. `docker ps -a` *(to get the id of the backend django container)*
+3. `docker ps -a` *(run in a different terminal to get the id of the backend django container)*
 4. `docker exec -it <backend-django-container-id> bash` 
 5. `python manage.py migrate`
 
