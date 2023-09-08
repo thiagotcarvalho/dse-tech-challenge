@@ -8,7 +8,7 @@ Then, navigate to the directory of the cloned repo and run the following command
 1. `docker compose build`
 2. `docker compose up`
 3. `docker ps -a` *(to get the id of the django container)*
-4. `docker exec -it <docker-container-id> bash` 
+4. `docker exec -it <django-container-id> bash` 
 5. `python manage.py migrate`
 
 Finally, navigate to `http:localhost:3000` to see the frontend of the web application.
